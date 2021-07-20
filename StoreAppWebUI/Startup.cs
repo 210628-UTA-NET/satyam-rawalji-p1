@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StoreAppBL;
+using StoreAppDL;
 
 namespace StoreAppWebUI
 {
@@ -24,6 +26,16 @@ namespace StoreAppWebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // add reference to dbcontext to get proper db connection
+
+
+            // start adding dependencies to mvc project
+            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IOrderBL, OrderBL>();
+            services.AddScoped<ICustomerBL, CustomerBL>();
+            services.AddScoped<IStoreFrontBL, StoreFrontBL>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
