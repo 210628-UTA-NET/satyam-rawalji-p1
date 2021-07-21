@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppBL", "..\StoreAppBL\StoreAppBL.csproj", "{4815EA23-97F2-44E8-82D3-34BE9417C55E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreAppBL", "..\StoreAppBL\StoreAppBL.csproj", "{4815EA23-97F2-44E8-82D3-34BE9417C55E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppDL", "..\StoreAppDL\StoreAppDL.csproj", "{3EF2C374-ABF0-46A3-9708-5A9BE949F7EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreAppDL", "..\StoreAppDL\StoreAppDL.csproj", "{3EF2C374-ABF0-46A3-9708-5A9BE949F7EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppModels", "..\StoreAppModels\StoreAppModels.csproj", "{12016D4B-BC42-40F2-99F3-47F59810BA77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreAppModels", "..\StoreAppModels\StoreAppModels.csproj", "{12016D4B-BC42-40F2-99F3-47F59810BA77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppUI", "..\StoreAppUI\StoreAppUI.csproj", "{69D307E8-EC58-47E0-A9A5-440851228C47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreAppUI", "..\StoreAppUI\StoreAppUI.csproj", "{69D307E8-EC58-47E0-A9A5-440851228C47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppWebUI", "..\StoreAppWebUI\StoreAppWebUI.csproj", "{32643CDA-3D5E-4D11-9E22-E346846F125D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreAppWebUI", "..\StoreAppWebUI\StoreAppWebUI.csproj", "{32643CDA-3D5E-4D11-9E22-E346846F125D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAppTest", "..\StoreAppTest\StoreAppTest\StoreAppTest.csproj", "{F097DB3E-93D4-4F50-B783-406AE3634D64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreAppTest", "..\StoreAppTest\StoreAppTest\StoreAppTest.csproj", "{F097DB3E-93D4-4F50-B783-406AE3634D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4815EA23-97F2-44E8-82D3-34BE9417C55E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -100,5 +97,11 @@ Global
 		{F097DB3E-93D4-4F50-B783-406AE3634D64}.Release|x64.Build.0 = Release|Any CPU
 		{F097DB3E-93D4-4F50-B783-406AE3634D64}.Release|x86.ActiveCfg = Release|Any CPU
 		{F097DB3E-93D4-4F50-B783-406AE3634D64}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42253F40-E9BA-4E15-972E-573F2E7E7997}
 	EndGlobalSection
 EndGlobal
