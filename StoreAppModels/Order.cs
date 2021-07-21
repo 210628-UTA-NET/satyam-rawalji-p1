@@ -3,7 +3,7 @@ using System;
 namespace StoreAppModels {
     public class Order {
         public Order() {}
-        public int OId { get; set; }
+        public int Id { get; set; }
         public int CId {get;set;}
         public int SId {get;set;}
         public string SName {get;set;}

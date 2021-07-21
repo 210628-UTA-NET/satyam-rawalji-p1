@@ -26,28 +26,30 @@ namespace StoreAppDL
 
         // will hold the connection string?
         protected override void OnConfiguring(DbContextOptionsBuilder p_options)
-            => p_options.UseSqlServer("Server=tcp:satyamdb.database.windows.net,1433;" +
-                "Initial Catalog=satyamdb;Persist Security Info=False;User ID=srawalji;" +
-                "Password=Salty3ham4;MultipleActiveResultSets=False;Encrypt=True;" +
-                "TrustServerCertificate=False;Connection Timeout=30;");
+        {
+            p_options.UseSqlServer(@"Server=tcp:satyamdb.database.windows.net,1433;
+                  Initial Catalog=satyamdb;Persist Security Info=False;User ID=srawalji;
+                  Password=Salty3ham4;MultipleActiveResultSets=False;Encrypt=True;
+                  TrustServerCertificate=False;Connection Timeout=30;");
+        }
 
         protected override void OnModelCreating(ModelBuilder p_modelBuilder)
         {
             // These blocks of code auto-generate ID columns
             p_modelBuilder.Entity<Customer>()
-                .Property(cust => cust.CId)
+                .Property(cust => cust.Id)
                 .ValueGeneratedOnAdd();
 
             p_modelBuilder.Entity<StoreFront>()
-                .Property(sf => sf.SFId)
+                .Property(sf => sf.Id)
                 .ValueGeneratedOnAdd();
 
             p_modelBuilder.Entity<LineItem>()
-                .Property(li => li.LId)
+                .Property(li => li.Id)
                 .ValueGeneratedOnAdd();
 
             p_modelBuilder.Entity<Order>()
-                .Property(o => o.OId)
+                .Property(o => o.Id)
                 .ValueGeneratedOnAdd();
         }
     }
