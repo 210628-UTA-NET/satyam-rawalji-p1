@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +29,7 @@ namespace StoreAppWebUI
             services.AddControllersWithViews();
 
             // add reference to dbcontext to get proper db connection
-
+            services.AddDbContext<StoreAppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Reference2DB")));
 
             // start adding dependencies to mvc project
             services.AddScoped<IRepository, Repository>();

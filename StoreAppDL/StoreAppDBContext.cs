@@ -25,6 +25,7 @@ namespace StoreAppDL
         public StoreAppDBContext(DbContextOptions options) : base(options) { }
 
         // will hold the connection string?
+        // need to figure out why connection string isnt working in startup.cs
         protected override void OnConfiguring(DbContextOptionsBuilder p_options)
         {
             p_options.UseSqlServer(@"Server=tcp:satyamdb.database.windows.net,1433;

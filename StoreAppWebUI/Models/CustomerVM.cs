@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace StoreAppModels
+namespace StoreAppWebUI.Models
 {
-    public class Customer
+    public class CustomerVM
     {
-        public Customer() {}
+        // constructor
+        public CustomerVM()
+        { }
+
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -15,6 +21,5 @@ namespace StoreAppModels
         public string ZipCode { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-
     }
 }
