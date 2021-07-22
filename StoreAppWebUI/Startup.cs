@@ -26,7 +26,8 @@ namespace StoreAppWebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            // add razor, compiles at runtime so you dont need to close/restart to see changes
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             // add reference to dbcontext to get proper db connection
             services.AddDbContext<StoreAppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Reference2DB")));

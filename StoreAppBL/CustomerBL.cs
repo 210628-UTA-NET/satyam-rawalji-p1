@@ -24,5 +24,10 @@ namespace StoreAppBL {
         public List<Order> SearchCustomerOrders(string _customerName, string _customerEmail) {
             return _repository.SearchCustomerOrders(_customerName, _customerEmail);
         }
+
+        public List<Customer> GetAllCustomers()
+        {
+            return _repository.GetAllCustomers();
+        }
     }
 }

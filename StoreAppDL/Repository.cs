@@ -102,5 +102,11 @@ namespace StoreAppDL {
             */
             return new List<Order>();
         }
+
+        // adding search all customers for P1
+        public List<Customer> GetAllCustomers()
+        {
+            return _context.Customers.Select(cust => cust).ToList();
+        }
     }
 }
