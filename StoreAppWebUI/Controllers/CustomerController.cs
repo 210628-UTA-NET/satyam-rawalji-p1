@@ -81,5 +81,38 @@ namespace StoreAppWebUI.Controllers
             // in a sense, the finally block if try or catch arent used
             return View();
         }
+
+        //[HttpGet]
+        public IActionResult Search(CustomerVM custVM)
+        {
+            // use try catch for validation
+            try
+            {
+                // model state to make sure current model from ui is valid
+                if (ModelState.IsValid)
+                {
+                    return View(
+                        _customerBL.SearchCustomer(custVM.FirstName, custVM.LastName)
+                        .Select(cust => new CustomerVM(cust))
+                        .ToList());
+                    // use redirect to pass user to another page
+                    // Other page in this case is index.cshtml for Customer controller
+                    //return RedirectToAction(nameof(Options));
+                }
+            }
+            // block to catch any exceptions
+            catch (Exception)
+            {
+                // return view if try block doesnt work
+                return View();
+            }
+            // in a sense, the finally block if try or catch arent used
+            return View();
+        }
+
+        public IActionResult Options()
+        {
+            return View();
+        }
     }
 }

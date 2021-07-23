@@ -14,22 +14,24 @@ namespace StoreAppDL {
             _context = p_context;
         }
         // adds customer to db
-        public StoreAppModels.Customer AddCustomer(StoreAppModels.Customer p_customer) {
+        public Customer AddCustomer(Customer p_customer) {
             _context.Customers.Add(p_customer);
             _context.SaveChanges();
             return p_customer;
         }
-        // searches for customer based on name and email
-        public StoreAppModels.Customer SearchCustomer(string userEntry1, string userEntry2) {
-            StoreAppModels.Customer queryCustomer = new StoreAppModels.Customer();
-            /*var customer = _context.Customers.Single(person => person.CName == userEntry1 && person.CEmail == userEntry2);
+        // searches for customer based on first and last name
+        public List<Customer> SearchCustomer(string firstName, string lastName) {
+            return _context.Customers
+                .Select(cust => cust)
+                .Where(cust => cust.FirstName == firstName && cust.LastName == lastName)
+                .ToList();
+            /*
+            var customer = _context.Customers.Single(person => person.CName == userEntry1 && person.CEmail == userEntry2);
             queryCustomer.Name = customer.CName;
             queryCustomer.Email = customer.CEmail;
             queryCustomer.Address = customer.CAddress;
             queryCustomer.PhoneNumber = customer.CPhoneNumber;
             */
-
-            return queryCustomer;
         }
         // places order based on customer and store id
         public StoreAppModels.Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total) {

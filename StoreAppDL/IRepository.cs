@@ -8,7 +8,7 @@ namespace StoreAppDL
     public interface IRepository {
         // list of function declarations
         Customer AddCustomer(Customer _customer);
-        Customer SearchCustomer(string userEntry1, string userEntry2);
+        List<Customer> SearchCustomer(string firstName, string lastName);
         // adding search all customers for P1
         List<Customer> GetAllCustomers();
         Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total);

@@ -6,7 +6,7 @@ namespace StoreAppBL {
     public interface ICustomerBL {
         // function declarations with no implementation
         Customer AddCustomer(Customer _customer);
-        Customer SearchCustomer(string userEntry1, string userEntry2);
+        List<Customer> SearchCustomer(string firstName, string lastName);
         List<Order> SearchCustomerOrders(string _customerName, string _customerEmail);
         List<Customer> GetAllCustomers();
     }
