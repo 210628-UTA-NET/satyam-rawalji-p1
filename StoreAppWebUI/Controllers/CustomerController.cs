@@ -64,7 +64,8 @@ namespace StoreAppWebUI.Controllers
                         State = custVM.State,
                         ZipCode = custVM.ZipCode,
                         Email = custVM.Email,
-                        PhoneNumber = custVM.PhoneNumber
+                        PhoneNumber = custVM.PhoneNumber,
+                        IsManager = custVM.IsManager
                     });
 
                     // use redirect to pass user to another page
@@ -97,7 +98,7 @@ namespace StoreAppWebUI.Controllers
                         .ToList());
                     // use redirect to pass user to another page
                     // Other page in this case is index.cshtml for Customer controller
-                    //return RedirectToAction(nameof(Options));
+                    return RedirectToAction(nameof(Index));
                 }
             }
             // block to catch any exceptions

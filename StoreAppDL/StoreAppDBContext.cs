@@ -17,6 +17,7 @@ namespace StoreAppDL
         public DbSet<StoreFront> StoreFronts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<LineItem> LineItems { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
 
         // create constructors
         // use base keyword to have constructors reference base class (s.o.l.i.d principles)
@@ -51,6 +52,10 @@ namespace StoreAppDL
 
             p_modelBuilder.Entity<Order>()
                 .Property(o => o.Id)
+                .ValueGeneratedOnAdd();
+
+            p_modelBuilder.Entity<Inventory>()
+                .Property(i => i.Id)
                 .ValueGeneratedOnAdd();
         }
     }

@@ -29,6 +29,7 @@ namespace StoreAppWebUI.Models
             ZipCode = p_customer.ZipCode;
             Email = p_customer.Email;
             PhoneNumber = p_customer.PhoneNumber;
+            IsManager = p_customer.IsManager;
         }
 
         // will use data annotations to validate correct data is entered
@@ -50,5 +51,7 @@ namespace StoreAppWebUI.Models
         public string Email { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
+        [Required]
+        public bool IsManager { get; set; }
     }
 }
