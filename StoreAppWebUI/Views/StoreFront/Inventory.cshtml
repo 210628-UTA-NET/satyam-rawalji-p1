@@ -1,0 +1,37 @@
+﻿@model IEnumerable<StoreAppWebUI.Models.InventoryVM>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h3>Inventory</h3>
+
+    <!-- table to list all the store''s inventory in the database-->
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Quantity Held</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuantityHeld)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="Index" class="btn btn-primary" style="position:relative; top:10px;">Replenish Inventory</a>
+    <a asp-action="Index" class="btn btn-danger" style="position:relative; top:10px;">Back</a>
+</body>
+</html>

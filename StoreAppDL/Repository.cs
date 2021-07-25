@@ -115,5 +115,13 @@ namespace StoreAppDL {
         {
             return _context.StoreFronts.Select(store => store).ToList();
         }
+
+        public List<Inventory> GetAllInventory(int _storeId)
+        {
+            return _context.Inventories
+                .Select(store => store)
+                .Where(store => store.StoreId == _storeId)
+                .ToList();
+        }
     }
 }

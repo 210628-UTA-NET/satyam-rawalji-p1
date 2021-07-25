@@ -18,5 +18,6 @@ namespace StoreAppDL
         List<Order> SearchStoreOrders(string _storeName);
         List<Order> SearchCustomerOrders(string _customerName, string _customerEmail);
         List<StoreFront> GetAllStores();
+        List<Inventory> GetAllInventory(int _storeId);
     }    
 }

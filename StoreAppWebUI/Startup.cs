@@ -37,7 +37,7 @@ namespace StoreAppWebUI
             services.AddScoped<IOrderBL, OrderBL>();
             services.AddScoped<ICustomerBL, CustomerBL>();
             services.AddScoped<IStoreFrontBL, StoreFrontBL>();
-
+            services.AddScoped<I_InventoryBL, InventoryBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
