@@ -110,5 +110,11 @@ namespace StoreAppDL {
         {
             return _context.Customers.Select(cust => cust).ToList();
         }
+
+        // adding search customer based on id for placing orders
+        public Customer SearchCustomer(int _customerId)
+        {
+            return _context.Customers.Single(cust => cust.Id == _customerId);
+        }
     }
 }

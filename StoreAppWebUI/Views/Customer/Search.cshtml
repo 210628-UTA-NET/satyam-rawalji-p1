@@ -1,4 +1,4 @@
-﻿@model StoreAppWebUI.Models.CustomerVM;
+﻿@model StoreAppWebUI.Models.CustomerVM
 
 <!DOCTYPE html>
 <html>
@@ -14,16 +14,17 @@
         <form asp-action="Search">
             <div class="mb-3">
                 <label asp-for="FirstName" class="form-label">First Name</label>
-                <input asp-for="FirstName" type="text" class="form-control">
+                <input asp-for="FirstName" type="text" class="form-control" id="firstname">
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="LastName" class="form-label">Last Name</label>
-                <input asp-for="LastName" type="text" class="form-control">
+                <input asp-for="LastName" type="text" class="form-control" id="lastname">
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <!--<button type="submit" class="btn btn-primary">Search</button>-->
+
+            @Html.ActionLink("Search", "Options", new { firstName = "Satyam", lastName = "Rawalji" }, new { @style = "color:white;", @class = "btn btn-primary" })
         </form>
         <a asp-action="Index" class="btn btn-danger" style="position:relative; top:10px;">Back</a>
     </div>

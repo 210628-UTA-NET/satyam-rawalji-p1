@@ -83,8 +83,13 @@ namespace StoreAppWebUI.Controllers
             return View();
         }
 
+        public IActionResult Search()
+        {
+            return View();
+        }
+
         //[HttpGet]
-        public IActionResult Search(CustomerVM custVM)
+        public IActionResult Options(string firstName, string lastName)
         {
             // use try catch for validation
             try
@@ -93,12 +98,12 @@ namespace StoreAppWebUI.Controllers
                 if (ModelState.IsValid)
                 {
                     return View(
-                        _customerBL.SearchCustomer(custVM.FirstName, custVM.LastName)
+                        _customerBL.SearchCustomer(firstName, lastName)
                         .Select(cust => new CustomerVM(cust))
                         .ToList());
                     // use redirect to pass user to another page
                     // Other page in this case is index.cshtml for Customer controller
-                    return RedirectToAction(nameof(Index));
+                    //return RedirectToAction(nameof(Index));
                 }
             }
             // block to catch any exceptions
@@ -111,9 +116,13 @@ namespace StoreAppWebUI.Controllers
             return View();
         }
 
-        public IActionResult Options()
+        /// <summary>
+        /// Order will allow customer to order from customer page
+        /// </summary>
+        /// <returns> Should return back to customer page after completing order </returns>
+        public IActionResult Order(int p_id)
         {
-            return View();
+            return View(new CustomerVM(_customerBL.SearchCustomer(p_id)));
         }
     }
 }
