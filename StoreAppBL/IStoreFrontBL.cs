@@ -10,5 +10,6 @@ namespace StoreAppBL
         List<LineItem> SearchStore(string _storeName);
         List<LineItem> ReplenishStore(List<LineItem> _replenishStore);
         List<Order> SearchStoreOrders(string _storeName);
+        List<StoreFront> GetAllStores();
     }
 }

@@ -25,13 +25,6 @@ namespace StoreAppDL {
                 .Select(cust => cust)
                 .Where(cust => cust.FirstName == firstName && cust.LastName == lastName)
                 .ToList();
-            /*
-            var customer = _context.Customers.Single(person => person.CName == userEntry1 && person.CEmail == userEntry2);
-            queryCustomer.Name = customer.CName;
-            queryCustomer.Email = customer.CEmail;
-            queryCustomer.Address = customer.CAddress;
-            queryCustomer.PhoneNumber = customer.CPhoneNumber;
-            */
         }
         // places order based on customer and store id
         public StoreAppModels.Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total) {
@@ -115,6 +108,12 @@ namespace StoreAppDL {
         public Customer SearchCustomer(int _customerId)
         {
             return _context.Customers.Single(cust => cust.Id == _customerId);
+        }
+
+        // adding search all stores for p1
+        public List<StoreFront> GetAllStores()
+        {
+            return _context.StoreFronts.Select(store => store).ToList();
         }
     }
 }

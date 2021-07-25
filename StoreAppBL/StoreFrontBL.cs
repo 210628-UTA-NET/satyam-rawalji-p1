@@ -22,5 +22,10 @@ namespace StoreAppBL {
         public List<Order> SearchStoreOrders(string _storeName) {
             return _repository.SearchStoreOrders(_storeName);
         }
+
+        public List<StoreFront> GetAllStores()
+        {
+            return _repository.GetAllStores();
+        }
     }
 }
