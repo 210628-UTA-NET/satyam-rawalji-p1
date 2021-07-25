@@ -22,5 +22,10 @@ namespace StoreAppBL
         {
             return _repository.GetAllInventory(_storeId);
         }
+
+        public Inventory UpdateInventory(int _storeId, int _lineId, int newQuantity)
+        {
+            return _repository.UpdateInventory(_storeId, _lineId, newQuantity);
+        }
     }
 }

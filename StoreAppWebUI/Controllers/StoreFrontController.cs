@@ -58,5 +58,61 @@ namespace StoreAppWebUI.Controllers
             // in a sense, the finally block if try or catch arent used
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Replenish(int storeId)
+        {
+            // use try catch for validation
+            try
+            {
+                // model state to make sure current model from ui is valid
+                if (ModelState.IsValid)
+                {
+                    return View(
+                        _inventoryBL.GetAllInventory(storeId)
+                        .Select(inv => new InventoryVM(inv))
+                        .ToList()
+                    );
+                }
+            }
+            // block to catch any exceptions
+            catch (Exception)
+            {
+                // return view if try block doesnt work
+                return View();
+            }
+            // in a sense, the finally block if try or catch arent used
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Replenish(List<InventoryVM> invVM)
+        {
+            // use try catch for validation
+            try
+            {
+                // model state to make sure current model from ui is valid
+                if (ModelState.IsValid)
+                {
+                    foreach(InventoryVM Inv in invVM)
+                    {
+                        _inventoryBL.UpdateInventory(Inv.StoreId, Inv.LineItemId, 120);
+                        Console.WriteLine(""+ Inv.StoreId + Inv.LineItemId + Inv.QuantityHeld);
+                    }
+
+                    // use redirect to pass user to another page
+                    // Other page in this case is index.cshtml for Customer controller
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            // block to catch any exceptions
+            catch (Exception)
+            {
+                // return view if try block doesnt work
+                return View();
+            }
+            // in a sense, the finally block if try or catch arent used
+            return View();
+        }
     }
 }

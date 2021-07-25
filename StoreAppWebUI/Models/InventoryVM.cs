@@ -16,6 +16,11 @@ namespace StoreAppWebUI.Models
             StoreId = p_inventory.StoreId;
             QuantityHeld = p_inventory.QuantityHeld;
             Price = p_inventory.Price;
+            LineItem = new LineItem()
+            {
+                Id = p_inventory.LineItem.Id,
+                Name = p_inventory.LineItem.Name
+            };
         }
         [Required]
         public int Id { get; set; }
@@ -27,5 +32,6 @@ namespace StoreAppWebUI.Models
         public int QuantityHeld { get; set; }
         [Required]
         public double Price { get; set; }
+        public LineItem LineItem { get; set; }
     }
 }

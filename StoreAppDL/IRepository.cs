@@ -19,5 +19,6 @@ namespace StoreAppDL
         List<Order> SearchCustomerOrders(string _customerName, string _customerEmail);
         List<StoreFront> GetAllStores();
         List<Inventory> GetAllInventory(int _storeId);
+        Inventory UpdateInventory(int _storeId, int _lineId, int newQuantity);
     }    
 }

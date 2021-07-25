@@ -118,10 +118,42 @@ namespace StoreAppDL {
 
         public List<Inventory> GetAllInventory(int _storeId)
         {
-            return _context.Inventories
+            return (from i in _context.Inventories
+                    join li in _context.LineItems
+                    on i.LineItemId equals li.Id
+                    where i.StoreId == _storeId
+                    select new Inventory()
+                    {
+                        Id = i.Id,
+                        LineItemId = i.LineItemId,
+                        StoreId = i.StoreId,
+                        QuantityHeld = i.QuantityHeld,
+                        Price = i.Price,
+                        LineItem = new LineItem()
+                        {
+                            Id = li.Id,
+                            Name = li.Name
+                        }
+                    }).ToList();
+            /*return _context.Inventories
                 .Select(store => store)
                 .Where(store => store.StoreId == _storeId)
-                .ToList();
+                .ToList();*/
+        }
+
+        public Inventory UpdateInventory(int _storeId, int _lineId, int newQuantity)
+        {
+            /*foreach(var product in _replenishStore) {
+                var item = _context.LineItems.Single(li => li.LId == product.LId);
+                item.LQuantity = product.Quantity;
+                _context.SaveChanges();
+            }*/
+            Inventory inv = (from i in _context.Inventories
+                             where i.StoreId == _storeId && i.LineItemId == _lineId
+                             select i).Single();
+            inv.QuantityHeld = newQuantity;
+            _context.SaveChanges();
+            return new Inventory();
         }
     }
 }

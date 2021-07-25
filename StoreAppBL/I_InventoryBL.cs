@@ -10,5 +10,7 @@ namespace StoreAppBL
     public interface I_InventoryBL
     {
         List<Inventory> GetAllInventory(int _storeId);
+
+        Inventory UpdateInventory(int _storeId, int _lineId, int newQuantity);
     }
 }

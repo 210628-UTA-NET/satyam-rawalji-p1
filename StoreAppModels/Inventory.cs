@@ -15,5 +15,6 @@ namespace StoreAppModels
         public int StoreId { get; set; }
         public int QuantityHeld { get; set; }
         public double Price { get { return _price; } set { _price = (double) value; } }
+        public LineItem LineItem { get; set; }
     }
 }
