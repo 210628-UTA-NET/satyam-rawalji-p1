@@ -111,9 +111,6 @@ namespace StoreAppWebUI.Controllers
                         _customerBL.SearchCustomer(firstName, lastName)
                         .Select(cust => new CustomerVM(cust))
                         .ToList());
-                    // use redirect to pass user to another page
-                    // Other page in this case is index.cshtml for Customer controller
-                    //return RedirectToAction(nameof(Index));
                 }
             }
             // block to catch any exceptions
@@ -146,6 +143,12 @@ namespace StoreAppWebUI.Controllers
                 .Select(inv => new InventoryVM(inv))
                 .ToList()
             ); 
+        }
+
+        // might relocate to order view later
+        public IActionResult ViewOrders(int p_id)
+        {
+            return View();
         }
     }
 }

@@ -1,4 +1,10 @@
-﻿@model IEnumerable<StoreAppWebUI.Models.InventoryVM>
+﻿@model StoreAppWebUI.Models.InventoryVM
+@{
+    int Store = Convert.ToInt32(Context.Request.Query["storeId"]);
+    int Product = Convert.ToInt32(Context.Request.Query["itemId"]);
+    int Current = Convert.ToInt32(Context.Request.Query["current"]);
+    string name = Convert.ToString(Context.Request.Query["name"]);
+}
 
 <!DOCTYPE html>
 <html>
@@ -10,30 +16,29 @@
     <h3>Replenish Inventory</h3>
 
     <form asp-action="Replenish">
+        <input hidden asp-for="StoreId" value="@Store" />
+        <input hidden asp-for="LineItemId" value="@Product" />
         <!-- table to list all the store's inventory in the database-->
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Price</th>
+                    <th>Old Quantity</th>
                     <th>New Quantity</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LineItem.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(modelItem => item.QuantityHeld)
-                        </td>
-                    </tr>
-                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Current)
+                    </td>
+                    <td>
+                        <input asp-for="QuantityHeld" />
+                    </td>
+                </tr>
             </tbody>
         </table>
         <button type="submit" class="btn btn-primary">Submit</button>

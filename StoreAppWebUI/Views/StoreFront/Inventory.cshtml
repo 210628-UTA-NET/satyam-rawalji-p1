@@ -20,6 +20,7 @@
                 <th>Name</th>
                 <th>Quantity Held</th>
                 <th>Price</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,11 +36,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Price)
                     </td>
+                    <td>
+                        @Html.ActionLink("Replenish Inventory", "Replenish", new { storeId = Store, itemId = item.LineItemId, current = item.QuantityHeld, name = item.LineItem.Name }, new { @style = "color:white;", @class = "btn btn-primary" })
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
-    @Html.ActionLink("Replenish Inventory", "Replenish", new { storeId = Store }, new { @style = "color:white;", @class = "btn btn-primary" })
     <a asp-action="Index" class="btn btn-danger" style="position:relative; ">Back</a>
 </body>
 </html>

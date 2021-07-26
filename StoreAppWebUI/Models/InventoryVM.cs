@@ -9,6 +9,11 @@ namespace StoreAppWebUI.Models
 {
     public class InventoryVM
     {
+        public InventoryVM()
+        {
+
+        }
+
         public InventoryVM(Inventory p_inventory)
         {
             Id = p_inventory.Id;

@@ -6,13 +6,16 @@ using System.Linq;
 namespace StoreAppDL {
     // Repository implements repository interface
     public class Repository : IRepository {
+
         // create dbcontext variable to run queries
         private StoreAppDBContext _context;
+
         // use Repository constructor to use variable passed from FactoryMenu.cs
         public Repository(StoreAppDBContext p_context) {
             // dependency injection
             _context = p_context;
         }
+
         // adds customer to db
         public Customer AddCustomer(Customer p_customer) {
             _context.Customers.Add(p_customer);
@@ -98,6 +101,10 @@ namespace StoreAppDL {
             return new List<Order>();
         }
 
+
+
+
+
         // adding search all customers for P1
         public List<Customer> GetAllCustomers()
         {
@@ -116,6 +123,7 @@ namespace StoreAppDL {
             return _context.StoreFronts.Select(store => store).ToList();
         }
 
+        // retuns all the inventory based on the entered store id
         public List<Inventory> GetAllInventory(int _storeId)
         {
             return (from i in _context.Inventories
@@ -141,23 +149,15 @@ namespace StoreAppDL {
                             Address = sf.Address
                         }
                     }).ToList();
-            /*return _context.Inventories
-                .Select(store => store)
-                .Where(store => store.StoreId == _storeId)
-                .ToList();*/
         }
 
+        // updates inventory based on both store and lineitem id (which composite in inventory)
         public Inventory UpdateInventory(int _storeId, int _lineId, int newQuantity)
         {
-            /*foreach(var product in _replenishStore) {
-                var item = _context.LineItems.Single(li => li.LId == product.LId);
-                item.LQuantity = product.Quantity;
-                _context.SaveChanges();
-            }*/
-            Inventory inv = (from i in _context.Inventories
-                             where i.StoreId == _storeId && i.LineItemId == _lineId
-                             select i).Single();
+            Inventory inv = _context.Inventories.Single(i => i.StoreId == _storeId && i.LineItemId == _lineId);
             inv.QuantityHeld = newQuantity;
+            _context.Inventories.Update(inv);
+
             _context.SaveChanges();
             return new Inventory();
         }

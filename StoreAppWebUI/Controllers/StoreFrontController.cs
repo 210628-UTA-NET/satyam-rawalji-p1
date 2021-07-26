@@ -61,33 +61,19 @@ namespace StoreAppWebUI.Controllers
             return View();
         }
 
-        public IActionResult Replenish(int storeId)
+        public IActionResult Replenish()
         {
-            // use try catch for validation
-            try
-            {
-                // model state to make sure current model from ui is valid
-                if (ModelState.IsValid)
-                {
-                    return View(
-                        _inventoryBL.GetAllInventory(storeId)
-                        .Select(inv => new InventoryVM(inv))
-                        .ToList()
-                    );
-                }
-            }
-            // block to catch any exceptions
-            catch (Exception)
-            {
-                // return view if try block doesnt work
-                return View();
-            }
-            // in a sense, the finally block if try or catch arent used
             return View();
         }
 
         [HttpPost]
-        public IActionResult Replenish(List<InventoryVM> invVM)
+        public IActionResult Replenish(InventoryVM invVM)
+        {
+            return RedirectToAction("ReplenishInventory", 
+                new { storeId = invVM.StoreId, lineId = invVM.LineItemId, newQuantity = invVM.QuantityHeld});
+        }
+
+        public IActionResult ReplenishInventory(int storeId, int lineId, int newQuantity)
         {
             // use try catch for validation
             try
@@ -95,14 +81,9 @@ namespace StoreAppWebUI.Controllers
                 // model state to make sure current model from ui is valid
                 if (ModelState.IsValid)
                 {
-                    foreach(InventoryVM Inv in invVM)
-                    {
-                        _inventoryBL.UpdateInventory(Inv.StoreId, Inv.LineItemId, 120);
-                    }
+                    _inventoryBL.UpdateInventory(storeId, lineId, newQuantity);
 
-                    // use redirect to pass user to another page
-                    // Other page in this case is index.cshtml for Customer controller
-                    return RedirectToAction(nameof(Index));
+                    return View();
                 }
             }
             // block to catch any exceptions
