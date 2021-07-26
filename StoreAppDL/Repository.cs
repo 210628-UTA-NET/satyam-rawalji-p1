@@ -119,8 +119,8 @@ namespace StoreAppDL {
         public List<Inventory> GetAllInventory(int _storeId)
         {
             return (from i in _context.Inventories
-                    join li in _context.LineItems
-                    on i.LineItemId equals li.Id
+                    join li in _context.LineItems on i.LineItemId equals li.Id
+                    join sf in _context.StoreFronts on i.StoreId equals sf.Id
                     where i.StoreId == _storeId
                     select new Inventory()
                     {
@@ -133,6 +133,12 @@ namespace StoreAppDL {
                         {
                             Id = li.Id,
                             Name = li.Name
+                        },
+                        StoreFront = new StoreFront()
+                        {
+                            Id = sf.Id,
+                            Name = sf.Name,
+                            Address = sf.Address
                         }
                     }).ToList();
             /*return _context.Inventories

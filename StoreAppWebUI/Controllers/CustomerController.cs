@@ -13,13 +13,16 @@ namespace StoreAppWebUI.Controllers
     {
         private ICustomerBL _customerBL;
         private IStoreFrontBL _storeFrontBL;
+        private I_InventoryBL _inventoryBL;
+
         /// <summary>
         /// Using a constructor for dependency injection, create bl variable and pass through ctor
         /// </summary>
-        public CustomerController(ICustomerBL p_customerBL, IStoreFrontBL p_storeFrontBL)
+        public CustomerController(ICustomerBL p_customerBL, IStoreFrontBL p_storeFrontBL, I_InventoryBL p_inventoryBL)
         {
             _customerBL = p_customerBL;
             _storeFrontBL = p_storeFrontBL;
+            _inventoryBL = p_inventoryBL;
         }
         /// <summary>
         /// Use customer business logic class to query database for all customers
@@ -138,7 +141,11 @@ namespace StoreAppWebUI.Controllers
 
         public IActionResult Order(int p_id, int p_storeId)
         {
-            return View();
+            return View(
+                _inventoryBL.GetAllInventory(p_storeId)
+                .Select(inv => new InventoryVM(inv))
+                .ToList()
+            ); 
         }
     }
 }

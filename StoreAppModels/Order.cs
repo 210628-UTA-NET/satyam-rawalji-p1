@@ -9,6 +9,9 @@ namespace StoreAppModels {
         public int CustomerId { get; set; }
         public int QuantitySold { get; set; }
         public double Total {get;set;}
+        public StoreFront StoreFront { get; set; }
+        public LineItem LineItem { get; set; }
+        public Customer Customer { get; set; }
         public DateTime Date {get;set;}
     }
 }
