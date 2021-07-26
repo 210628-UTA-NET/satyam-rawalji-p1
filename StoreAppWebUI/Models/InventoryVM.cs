@@ -21,6 +21,12 @@ namespace StoreAppWebUI.Models
                 Id = p_inventory.LineItem.Id,
                 Name = p_inventory.LineItem.Name
             };
+            StoreFront = new StoreFront()
+            {
+                Id = p_inventory.StoreFront.Id,
+                Name = p_inventory.StoreFront.Name,
+                Address = p_inventory.StoreFront.Address
+            };
         }
         [Required]
         public int Id { get; set; }
@@ -33,5 +39,6 @@ namespace StoreAppWebUI.Models
         [Required]
         public double Price { get; set; }
         public LineItem LineItem { get; set; }
+        public StoreFront StoreFront { get; set; }
     }
 }

@@ -12,12 +12,14 @@ namespace StoreAppWebUI.Controllers
     public class CustomerController : Controller
     {
         private ICustomerBL _customerBL;
+        private IStoreFrontBL _storeFrontBL;
         /// <summary>
         /// Using a constructor for dependency injection, create bl variable and pass through ctor
         /// </summary>
-        public CustomerController(ICustomerBL p_customerBL)
+        public CustomerController(ICustomerBL p_customerBL, IStoreFrontBL p_storeFrontBL)
         {
             _customerBL = p_customerBL;
+            _storeFrontBL = p_storeFrontBL;
         }
         /// <summary>
         /// Use customer business logic class to query database for all customers
@@ -88,7 +90,12 @@ namespace StoreAppWebUI.Controllers
             return View();
         }
 
-        //[HttpGet]
+        [HttpPost]
+        public IActionResult Search(CustomerVM custVM)
+        {
+            return RedirectToAction("Options", new { firstName = custVM.FirstName, lastName = custVM.LastName });
+        }
+
         public IActionResult Options(string firstName, string lastName)
         {
             // use try catch for validation
@@ -117,12 +124,21 @@ namespace StoreAppWebUI.Controllers
         }
 
         /// <summary>
-        /// Order will allow customer to order from customer page
+        /// Select store will allow customer to choose store to order from
         /// </summary>
-        /// <returns> Should return back to customer page after completing order </returns>
-        public IActionResult Order(int p_id)
+        /// <returns>  </returns>
+        public IActionResult SelectStore(int p_id)
         {
-            return View(new CustomerVM(_customerBL.SearchCustomer(p_id)));
+            return View(
+                _storeFrontBL.GetAllStores()
+                .Select(cust => new StoreFrontVM(cust))
+                .ToList()
+            );
+        }
+
+        public IActionResult Order(int p_id, int p_storeId)
+        {
+            return View();
         }
     }
 }

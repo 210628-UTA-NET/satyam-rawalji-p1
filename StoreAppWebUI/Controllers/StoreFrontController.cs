@@ -12,6 +12,7 @@ namespace StoreAppWebUI.Controllers
     {
         private IStoreFrontBL _storeFrontBL;
         private I_InventoryBL _inventoryBL;
+
         /// <summary>
         /// Using a constructor for dependency injection, create bl variable and pass through ctor
         /// </summary>
@@ -21,6 +22,7 @@ namespace StoreAppWebUI.Controllers
             _storeFrontBL = p_storeFrontBL;
             _inventoryBL = p_inventoryBL;
         }
+
         /// <summary>
         /// access repository through bl layer and retrieve all stores in db
         /// </summary>
@@ -59,7 +61,6 @@ namespace StoreAppWebUI.Controllers
             return View();
         }
 
-        [HttpGet]
         public IActionResult Replenish(int storeId)
         {
             // use try catch for validation
@@ -97,7 +98,6 @@ namespace StoreAppWebUI.Controllers
                     foreach(InventoryVM Inv in invVM)
                     {
                         _inventoryBL.UpdateInventory(Inv.StoreId, Inv.LineItemId, 120);
-                        Console.WriteLine(""+ Inv.StoreId + Inv.LineItemId + Inv.QuantityHeld);
                     }
 
                     // use redirect to pass user to another page
