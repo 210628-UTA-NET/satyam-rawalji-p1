@@ -47,30 +47,7 @@ namespace StoreAppDL {
             return new StoreAppModels.Order();
         }
 
-        // searches for store and returns inventory
-        public List<StoreAppModels.LineItem> SearchStore(string _storeName) {
-            /*return (from li in _context.LineItems
-                    join p in _context.Products on li.LPId equals p.PId
-                    join sf in _context.StoreFronts on li.LSId equals sf.SId
-                    where sf.SName == _storeName
-                    select new StoreAppModels.LineItem() {
-                        LId = li.LId,
-                        LSId = (int)li.LSId,
-                        Name = p.PName,
-                        Price = p.PPrice,
-                        Quantity = li.LQuantity
-                    }).ToList();*/
-            return new List<LineItem>();
-        }
-        // replenishes store inventory if user chooses so
-        public List<StoreAppModels.LineItem> ReplenishStore(List<StoreAppModels.LineItem> _replenishStore) {
-            /*foreach(var product in _replenishStore) {
-                var item = _context.LineItems.Single(li => li.LId == product.LId);
-                item.LQuantity = product.Quantity;
-                _context.SaveChanges();
-            }*/
-            return _replenishStore;
-        }
+        
         
         
         

@@ -13,8 +13,6 @@ namespace StoreAppDL
         List<Customer> GetAllCustomers();
         Customer SearchCustomer(int _customerId);
         Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total);
-        List<LineItem> SearchStore(string _storeName);
-        List<LineItem> ReplenishStore(List<LineItem> _replenishStore);
         List<Order> SearchStoreOrders(int storeId);
         List<Order> SearchCustomerOrders(string firstName, string lastName);
         List<StoreFront> GetAllStores();
