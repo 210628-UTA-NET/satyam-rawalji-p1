@@ -20,11 +20,15 @@ namespace StoreAppWebUI.Controllers
 
         public IActionResult Index()
         {
+            // Going to create log with serilog already part of MVC?
+            _logger.LogInformation("If this works, I should see the alert in the console when on the Home Page");
+
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation("If this works, I should see the alert in the console when on the Privacy Page");
             return View();
         }
 
