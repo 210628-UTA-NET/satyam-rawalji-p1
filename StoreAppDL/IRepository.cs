@@ -15,8 +15,8 @@ namespace StoreAppDL
         Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total);
         List<LineItem> SearchStore(string _storeName);
         List<LineItem> ReplenishStore(List<LineItem> _replenishStore);
-        List<Order> SearchStoreOrders(string _storeName);
-        List<Order> SearchCustomerOrders(string _customerName, string _customerEmail);
+        List<Order> SearchStoreOrders(int storeId);
+        List<Order> SearchCustomerOrders(string firstName, string lastName);
         List<StoreFront> GetAllStores();
         List<Inventory> GetAllInventory(int _storeId);
         Inventory UpdateInventory(int _storeId, int _lineId, int newQuantity);

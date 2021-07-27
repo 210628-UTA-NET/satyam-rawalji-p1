@@ -22,6 +22,7 @@ namespace StoreAppDL {
             _context.SaveChanges();
             return p_customer;
         }
+
         // searches for customer based on first and last name
         public List<Customer> SearchCustomer(string firstName, string lastName) {
             return _context.Customers
@@ -29,6 +30,7 @@ namespace StoreAppDL {
                 .Where(cust => cust.FirstName == firstName && cust.LastName == lastName)
                 .ToList();
         }
+
         // places order based on customer and store id
         public StoreAppModels.Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total) {
             /*var customer = (from c in _context.Customers
@@ -44,6 +46,7 @@ namespace StoreAppDL {
             _context.SaveChanges();*/
             return new StoreAppModels.Order();
         }
+
         // searches for store and returns inventory
         public List<StoreAppModels.LineItem> SearchStore(string _storeName) {
             /*return (from li in _context.LineItems
@@ -68,38 +71,9 @@ namespace StoreAppDL {
             }*/
             return _replenishStore;
         }
-        // searches db for orders linked to user-chosen store
-        public List<StoreAppModels.Order> SearchStoreOrders(string _storeName) {
-            /*return (from sf in _context.StoreFronts
-                    join o in _context.Orders on sf.SId equals o.OSId
-                    where sf.SName == _storeName
-                    select new StoreAppModels.Order() {
-                        CId = o.OCId,
-                        SId = sf.SId,
-                        Total = Math.Round((double)o.OTotal,2),
-                        Date = (DateTime)o.OOrderDate
-                    }).OrderByDescending(date => date.Date)
-                    .ToList();
-            */
-            return new List<Order>();
-        }
-        // searches db for orders linked to user-chosen customer
-        public List<StoreAppModels.Order> SearchCustomerOrders(string _customerName, string _customerEmail) {
-            /*return (from c in _context.Customers
-                    join o in _context.Orders on c.CId equals o.OCId
-                    join s in _context.StoreFronts on o.OSId equals s.SId
-                    where c.CName == _customerName && c.CEmail == _customerEmail
-                    select new StoreAppModels.Order() {
-                        CId = o.OCId,
-                        SId = o.OSId,
-                        SName = s.SName,
-                        Total = Math.Round((double)o.OTotal,2),
-                        Date = (DateTime)o.OOrderDate
-                    }).OrderByDescending(date => date.Date)
-                    .ToList();
-            */
-            return new List<Order>();
-        }
+        
+        
+        
 
 
 
@@ -160,6 +134,99 @@ namespace StoreAppDL {
 
             _context.SaveChanges();
             return new Inventory();
+        }
+
+        // searches db for orders linked to user-chosen customer
+        public List<Order> SearchCustomerOrders(string firstName, string lastName)
+        {
+            return (from o in _context.Orders
+                    join s in _context.StoreFronts on o.StoreId equals s.Id 
+                    join li in _context.LineItems on o.LineItemId equals li.Id
+                    join c in _context.Customers on o.CustomerId equals c.Id
+                    where c.FirstName == firstName && c.LastName == lastName
+                    select new Order()
+                    {
+                        Id = o.Id,
+                        StoreId = o.StoreId,
+                        LineItemId = o.LineItemId,
+                        CustomerId = o.CustomerId,
+                        QuantitySold = o.QuantitySold,
+                        Total = o.Total,
+                        Date = Convert.ToDateTime(o.Date).ToLocalTime(),
+                        StoreFront = new StoreFront()
+                        {
+                            Id = s.Id,
+                            Name = s.Name,
+                            Address = s.Address
+                        },
+                        LineItem = new LineItem()
+                        {
+                            Id = li.Id,
+                            Name = li.Name
+                        },
+                        Customer = new Customer()
+                        {
+                            Id = c.Id,
+                            FirstName = c.FirstName,
+                            MiddleName = c.MiddleName,
+                            LastName = c.LastName,
+                            Address = c.Address,
+                            City = c.City,
+                            State = c.State,
+                            ZipCode = c.ZipCode,
+                            Email = c.Email,
+                            PhoneNumber = c.PhoneNumber,
+                            IsManager = c.IsManager
+                        }
+                    }
+            ).ToList();
+        }
+
+
+        // searches db for orders linked to user-chosen store
+        public List<Order> SearchStoreOrders(int storeId)
+        {
+            return (from o in _context.Orders
+                    join s in _context.StoreFronts on o.StoreId equals s.Id
+                    join li in _context.LineItems on o.LineItemId equals li.Id
+                    join c in _context.Customers on o.CustomerId equals c.Id
+                    where s.Id == storeId
+                    select new Order()
+                    {
+                        Id = o.Id,
+                        StoreId = o.StoreId,
+                        LineItemId = o.LineItemId,
+                        CustomerId = o.CustomerId,
+                        QuantitySold = o.QuantitySold,
+                        Total = o.Total,
+                        Date = Convert.ToDateTime(o.Date).ToLocalTime(),
+                        StoreFront = new StoreFront()
+                        {
+                            Id = s.Id,
+                            Name = s.Name,
+                            Address = s.Address
+                        },
+                        LineItem = new LineItem()
+                        {
+                            Id = li.Id,
+                            Name = li.Name
+                        },
+                        Customer = new Customer()
+                        {
+                            Id = c.Id,
+                            FirstName = c.FirstName,
+                            MiddleName = c.MiddleName,
+                            LastName = c.LastName,
+                            Address = c.Address,
+                            City = c.City,
+                            State = c.State,
+                            ZipCode = c.ZipCode,
+                            Email = c.Email,
+                            PhoneNumber = c.PhoneNumber,
+                            IsManager = c.IsManager
+                        }
+                    }
+            ).ToList();
         }
     }
 }

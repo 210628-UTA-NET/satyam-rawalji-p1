@@ -13,17 +13,17 @@ namespace StoreAppBL {
             _repository = p_repository;
         }
         // function declarations with the DB logic in Repository.cs 
-        public Customer AddCustomer(Customer _customer) {
+        public Customer AddCustomer(Customer _customer) 
+        {
             return _repository.AddCustomer(_customer);
         }
         
-        public List<Customer> SearchCustomer(string firstName, string lastName) {
+        public List<Customer> SearchCustomer(string firstName, string lastName) 
+        {
             return _repository.SearchCustomer(firstName, lastName);
         }
 
-        public List<Order> SearchCustomerOrders(string _customerName, string _customerEmail) {
-            return _repository.SearchCustomerOrders(_customerName, _customerEmail);
-        }
+        
 
         public List<Customer> GetAllCustomers()
         {

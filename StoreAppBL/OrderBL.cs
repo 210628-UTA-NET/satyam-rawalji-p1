@@ -1,6 +1,7 @@
 using System;
 using StoreAppModels;
 using StoreAppDL;
+using System.Collections.Generic;
 
 namespace StoreAppBL {
     // class implements order business logic interface
@@ -14,6 +15,16 @@ namespace StoreAppBL {
         // function where implementation is defined in Repository.cs
         public Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total) {
             return _repository.PlaceOrder(_customerName, _customerEmail, _storeID, _total);
+        }
+
+        public List<Order> SearchCustomerOrders(string firstName, string lastName)
+        {
+            return _repository.SearchCustomerOrders(firstName, lastName);
+        }
+
+        public List<Order> SearchStoreOrders(int storeId)
+        {
+            return _repository.SearchStoreOrders(storeId);
         }
     }
 }
