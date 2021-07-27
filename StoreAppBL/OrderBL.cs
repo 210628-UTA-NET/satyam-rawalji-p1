@@ -13,9 +13,7 @@ namespace StoreAppBL {
             _repository = p_repository;
         }
         // function where implementation is defined in Repository.cs
-        public Order PlaceOrder(string _customerName, string _customerEmail, int _storeID, double _total) {
-            return _repository.PlaceOrder(_customerName, _customerEmail, _storeID, _total);
-        }
+        
 
         public List<Order> SearchCustomerOrders(string firstName, string lastName)
         {
@@ -25,6 +23,16 @@ namespace StoreAppBL {
         public List<Order> SearchStoreOrders(int storeId)
         {
             return _repository.SearchStoreOrders(storeId);
+        }
+
+
+
+
+
+
+        public Order PlaceOrder(int storeId, int productId, int customerId, int quantitySold)
+        {
+            return _repository.PlaceOrder(storeId, productId, customerId, quantitySold);
         }
     }
 }

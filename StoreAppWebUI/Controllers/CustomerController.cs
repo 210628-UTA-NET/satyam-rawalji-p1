@@ -16,16 +16,19 @@ namespace StoreAppWebUI.Controllers
         private ICustomerBL _customerBL;
         private IStoreFrontBL _storeFrontBL;
         private I_InventoryBL _inventoryBL;
+        private IOrderBL _orderBL;
         private readonly ILogger<CustomerController> _logger;
 
         /// <summary>
         /// Using a constructor for dependency injection, create bl variable and pass through ctor
         /// </summary>
-        public CustomerController(ICustomerBL p_customerBL, IStoreFrontBL p_storeFrontBL, I_InventoryBL p_inventoryBL, ILogger<CustomerController> logger)
+        public CustomerController(ICustomerBL p_customerBL, IStoreFrontBL p_storeFrontBL, I_InventoryBL p_inventoryBL, 
+                                   IOrderBL p_orderBL, ILogger<CustomerController> logger)
         {
             _customerBL = p_customerBL;
             _storeFrontBL = p_storeFrontBL;
             _inventoryBL = p_inventoryBL;
+            _orderBL = p_orderBL;
             _logger = logger;
         }
 
@@ -165,6 +168,12 @@ namespace StoreAppWebUI.Controllers
             );
         }
 
+        /// <summary>
+        /// Order page will come from customer select and allow them to make a purchase
+        /// </summary>
+        /// <param name="p_id"></param>
+        /// <param name="p_storeId"></param>
+        /// <returns></returns>
         public IActionResult Order(int p_id, int p_storeId)
         {
             return View(
@@ -172,6 +181,44 @@ namespace StoreAppWebUI.Controllers
                 .Select(inv => new InventoryVM(inv))
                 .ToList()
             ); 
+        }
+
+        public IActionResult OrderAmount(int storeId, int customerId, int productId, double price, int quantity, string name)
+        {
+            ViewBag.store = storeId;
+            ViewBag.customer= customerId;
+            ViewBag.product = productId;
+            ViewBag.quantity = quantity;
+            ViewBag.name = name;
+            ViewBag.price = price;
+            return View();
+        }
+
+        public IActionResult OrderPlaced(OrderVM ordVM)
+        {
+            // use try catch for validation
+            try
+            {
+                // model state to make sure current model from ui is valid
+                if (ModelState.IsValid)
+                {
+                    _orderBL.PlaceOrder(ordVM.StoreId, ordVM.LineItemId, ordVM.CustomerId, ordVM.QuantitySold);
+
+                    _logger.LogInformation("New order should be added to db, and end user redirected to Customer Home Page");
+                    // use redirect to pass user to another page
+                    // Other page in this case is index.cshtml for Customer controller
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            // block to catch any exceptions
+            catch (Exception)
+            {
+                _logger.LogInformation("This shows the catch block was used when creating a customer");
+                // return view if try block doesnt work
+                return View();
+            }
+            // in a sense, the finally block if try or catch arent used
+            return View();
         }
     }
 }

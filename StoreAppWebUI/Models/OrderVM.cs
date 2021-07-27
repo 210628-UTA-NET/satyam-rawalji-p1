@@ -8,6 +8,7 @@ namespace StoreAppWebUI.Models
 {
     public class OrderVM
     {
+        public OrderVM() { }
         public OrderVM(Order p_order)
         {
             Id = p_order.Id;

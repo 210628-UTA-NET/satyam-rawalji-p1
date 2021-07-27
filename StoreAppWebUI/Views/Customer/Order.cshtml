@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<StoreAppWebUI.Models.InventoryVM>
+@{ 
+    int store = Convert.ToInt32(Context.Request.Query["p_storeId"]);
+    int customer = Convert.ToInt32(Context.Request.Query["p_id"]);
+}
 
 <!DOCTYPE html>
 <html>
@@ -16,8 +20,9 @@
                 <tr>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Quantity Held</th>
+                    <th>Quantity Remaining</th>
                     <th>Amount desired</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +39,10 @@
                             @Html.DisplayFor(modelItem => item.QuantityHeld)
                         </td>
                         <td>
-                            <input  />
+                            @Html.ActionLink("Choose Order Amount", "OrderAmount", 
+                                        new { storeId = store, customerId = customer, productId = item.LineItemId, price = item.Price, 
+                                                    quantity = item.QuantityHeld, name = item.LineItem.Name },
+                                        new { @style = "color:white;", @class = "btn btn-primary" })
                         </td>
                     </tr>
                 }

@@ -18,3 +18,48 @@ System.DivideByZeroException: Attempted to divide by zero.
 2021-07-27 01:20:08.049 -07:00 [ERR] Something went wrong
 System.DivideByZeroException: Attempted to divide by zero.
    at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 08:38:45.690 -07:00 [INF] Hello, world!
+2021-07-27 08:38:45.740 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 08:38:45.748 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 09:27:39.059 -07:00 [INF] Hello, world!
+2021-07-27 09:27:39.098 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 09:27:39.105 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 10:53:17.155 -07:00 [INF] Hello, world!
+2021-07-27 10:53:17.195 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 10:53:17.205 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 11:34:21.687 -07:00 [INF] Hello, world!
+2021-07-27 11:34:21.726 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 11:34:21.733 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 11:36:28.705 -07:00 [INF] Hello, world!
+2021-07-27 11:36:28.744 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 11:36:28.750 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 12:24:26.744 -07:00 [INF] Hello, world!
+2021-07-27 12:24:26.787 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 12:24:26.796 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 12:29:13.047 -07:00 [INF] Hello, world!
+2021-07-27 12:29:13.085 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 12:29:13.092 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 12:33:17.455 -07:00 [INF] Hello, world!
+2021-07-27 12:33:17.492 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 12:33:17.498 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
+2021-07-27 13:09:05.865 -07:00 [INF] Hello, world!
+2021-07-27 13:09:05.905 -07:00 [DBG] Dividing 10 by 0
+2021-07-27 13:09:05.911 -07:00 [ERR] Something went wrong
+System.DivideByZeroException: Attempted to divide by zero.
+   at StoreAppWebUI.Program.Main(String[] args) in C:\Users\Satyam\Downloads\satyam-rawalji-p1\StoreAppWebUI\Program.cs:line 32
