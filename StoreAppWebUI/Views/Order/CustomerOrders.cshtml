@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<StoreAppWebUI.Models.OrderVM>
+@{ 
+    string firstname = Context.Request.Query["firstName"];
+    string lastname = Context.Request.Query["lastName"];
+}
 
 <!DOCTYPE html>
 <html>
@@ -13,10 +17,16 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Date</th>
+                <th>
+                    @Html.ActionLink("Date", "CustomerOrders", 
+                        new { firstName = firstname, lastName = lastname, sortOrder = ViewBag.DateSort })
+                </th>
                 <th>Item</th>
                 <th>Quantity Sold</th>
-                <th>Total</th>
+                <th>
+                    @Html.ActionLink("Total", "CustomerOrders",
+                        new { firstName = firstname, lastName = lastname, sortOrder = ViewBag.PriceSort })
+                </th>
             </tr>
         </thead>
         <tbody>

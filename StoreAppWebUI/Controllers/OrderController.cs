@@ -39,10 +39,11 @@ namespace StoreAppWebUI.Controllers
         [HttpPost]
         public IActionResult ByCustomer(CustomerVM custVM)
         {
-            return RedirectToAction("CustomerOrders", new { firstName = custVM.FirstName, lastName = custVM.LastName });
+            return RedirectToAction("CustomerOrders", new { firstName = custVM.FirstName, lastName = custVM.LastName, sortedOrder = "" });
         }
 
-        public IActionResult CustomerOrders(string firstName, string lastName)
+        // handles the sorting on the orders page, along with presenting data
+        public IActionResult CustomerOrders(string firstName, string lastName, string sortOrder)
         {
             // use try catch for validation
             try
@@ -50,10 +51,33 @@ namespace StoreAppWebUI.Controllers
                 // model state to make sure current model from ui is valid
                 if (ModelState.IsValid)
                 {
-                    return View(
-                        _orderBL.SearchCustomerOrders(firstName, lastName)
+                    ViewBag.DateSort = String.IsNullOrEmpty(sortOrder) ? "DateDesc" : "";
+                    ViewBag.PriceSort = sortOrder == "Price" ? "PriceDesc" : "Price";
+
+                    var list = _orderBL.SearchCustomerOrders(firstName, lastName)
                         .Select(o => new OrderVM(o))
-                        .ToList());
+                        .ToList();
+
+                    var sorted = from s in list
+                                 select s;
+
+                    switch (sortOrder)
+                    {
+                        case "DateDesc":
+                            sorted = sorted.OrderByDescending(s => s.Date);
+                            break;
+                        case "":
+                            sorted = sorted.OrderBy(s => s.Date);
+                            break;
+                        case "PriceDesc":
+                            sorted = sorted.OrderByDescending(s => s.Total);
+                            break;
+                        default:
+                            sorted = sorted.OrderBy(s => s.Total);
+                            break;
+                    }
+
+                    return View(sorted);
                 }
             }
             // block to catch any exceptions
@@ -75,7 +99,7 @@ namespace StoreAppWebUI.Controllers
             );
         }
 
-        public IActionResult StoreOrders(int storeId)
+        public IActionResult StoreOrders(int storeId, string sortOrder)
         {
             // use try catch for validation
             try
@@ -83,10 +107,33 @@ namespace StoreAppWebUI.Controllers
                 // model state to make sure current model from ui is valid
                 if (ModelState.IsValid)
                 {
-                    return View(
-                        _orderBL.SearchStoreOrders(storeId)
+                    ViewBag.DateSort = String.IsNullOrEmpty(sortOrder) ? "DateDesc" : "";
+                    ViewBag.PriceSort = sortOrder == "Price" ? "PriceDesc" : "Price";
+
+                    var list = _orderBL.SearchStoreOrders(storeId)
                         .Select(o => new OrderVM(o))
-                        .ToList());
+                        .ToList();
+
+                    var sorted = from s in list
+                                 select s;
+
+                    switch (sortOrder)
+                    {
+                        case "DateDesc":
+                            sorted = sorted.OrderByDescending(s => s.Date);
+                            break;
+                        case "":
+                            sorted = sorted.OrderBy(s => s.Date);
+                            break;
+                        case "PriceDesc":
+                            sorted = sorted.OrderByDescending(s => s.Total);
+                            break;
+                        default:
+                            sorted = sorted.OrderBy(s => s.Total);
+                            break;
+                    }
+
+                    return View(sorted);
                 }
             }
             // block to catch any exceptions
