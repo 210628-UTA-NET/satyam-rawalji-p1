@@ -23,6 +23,25 @@ jobs:
       run: dotnet build StoreApp/ --configuration Release --no-restore
     - name: Test
       run: dotnet test StoreApp/ --no-restore --verbosity normal
+    - name: sonarscan-dotnet
+      # You may pin to the exact commit or the version.
+      # uses: highbyte/sonarscan-dotnet@90025f8a91fb480278dbd6cf740ee9d862f7794c
+      uses: highbyte/sonarscan-dotnet@v2.1.1-beta
+      with:
+        # The key of the SonarQube project
+        sonarProjectKey: 210628-uta-net_satyam-rawalji-p1
+        # The name of the SonarQube project
+        sonarProjectName: satyam-rawalji-p1
+        # The name of the SonarQube organization in SonarCloud. For hosted SonarQube, skip this setting.
+        sonarOrganization: 210628-uta-net
+        dotnetBuildArguments: StoreApp/
+        # Optional command arguments to 'dotnet test'
+        dotnetTestArguments: StoreApp/ CoreC#/RestaurantReview/ --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+        # Optional extra command arguments the the SonarScanner 'begin' command
+        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: publish
       run: dotnet publish StoreApp/ --configuration Release -o ./publish
     - name: deploy
@@ -31,3 +50,4 @@ jobs:
         app-name: storeAppSatyam # Replace with your app name
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
         package: ./publish
+    
