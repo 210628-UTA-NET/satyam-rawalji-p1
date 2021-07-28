@@ -32,26 +32,10 @@ namespace StoreAppDL {
         }
 
         
-
-        
-        
-        
-        
-
-
-
-
-
         // adding search all customers for P1
         public List<Customer> GetAllCustomers()
         {
             return _context.Customers.Select(cust => cust).ToList();
-        }
-
-        // adding search customer based on id for placing orders
-        public Customer SearchCustomer(int _customerId)
-        {
-            return _context.Customers.Single(cust => cust.Id == _customerId);
         }
 
         // adding search all stores for p1
@@ -191,8 +175,6 @@ namespace StoreAppDL {
                     }
             ).ToList();
         }
-
-
 
         // places order based on customer and store id
         public Order PlaceOrder(int storeId, int productId, int customerId, int quantitySold)

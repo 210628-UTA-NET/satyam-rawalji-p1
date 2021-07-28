@@ -23,16 +23,9 @@ namespace StoreAppBL {
             return _repository.SearchCustomer(firstName, lastName);
         }
 
-        
-
         public List<Customer> GetAllCustomers()
         {
             return _repository.GetAllCustomers();
-        }
-
-        public Customer SearchCustomer(int _customerId)
-        {
-            return _repository.SearchCustomer(_customerId);
         }
     }
 }

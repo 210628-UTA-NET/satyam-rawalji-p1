@@ -38,6 +38,88 @@ namespace StoreAppTest
             }
         }
 
+        [Fact]
+        public void SearchCustomerShouldSearchCustomer()
+        {
+            using (var context = new StoreAppDBContext(_options))
+            {
+                // Arrange
+                IRepository repo = new Repository(context);
+                List<Customer> list = new List<Customer>();
+                Customer findCustomer = new Customer()
+                {
+                    FirstName = "Aaron",
+                    MiddleName = "Arn",
+                    LastName = "Aaronson",
+                    Address = "Rustic Village",
+                    City = "English City",
+                    State = "England",
+                    ZipCode = "12345",
+                    Email = "aaa@revature.net",
+                    PhoneNumber = "123-456-7890"
+                };
+                list.Add(findCustomer);
+
+                // Act
+                List<Customer> foundCustomer = repo.SearchCustomer(findCustomer.FirstName, findCustomer.LastName);
+
+                // Assert
+                Assert.NotNull(foundCustomer);
+                Assert.Equal(list.Count, foundCustomer.Count);
+            }
+        }
+
+        [Fact]
+        public void GetAllCustomersShouldGetAllCustomers()
+        {
+            using (var context = new StoreAppDBContext(_options))
+            {
+                // Arrange
+                IRepository repo = new Repository(context);
+                List<Customer> list;
+                int counter = 1;
+
+                // Act
+                list = repo.GetAllCustomers(); 
+
+                // Assert
+                Assert.NotNull(list);
+                Assert.Equal(list.Count, counter);
+            }
+        }
+
+        [Fact]
+        public void AddCustomerShouldAddCustomer()
+        {
+            using (var context = new StoreAppDBContext(_options))
+            {
+                // Arrange
+                IRepository repo = new Repository(context);
+                Customer customer = new Customer()
+                {
+                    FirstName = "PAaron",
+                    MiddleName = "PArn",
+                    LastName = "PAaronson",
+                    Address = "PRustic Village",
+                    City = "PEnglish City",
+                    State = "PEngland",
+                    ZipCode = "P12345",
+                    Email = "Paaa@revature.net",
+                    PhoneNumber = "223-456-7890"
+                };
+                Customer update;
+                int counter = 2;
+
+                // Act
+                update = repo.AddCustomer(customer);
+                int newCount = repo.GetAllCustomers().Count;
+
+                // Assert
+                Assert.NotNull(customer);
+                Assert.Equal(newCount, counter);
+            }
+        }
+
         // need to fill db
         private void Seed()
         {
@@ -63,6 +145,22 @@ namespace StoreAppTest
                         Address = "Same local DB"
                     }
                 );
+
+                // add customer to db
+                context.Customers.AddRange(
+                    new Customer
+                    {
+                        FirstName = "Aaron",
+                        MiddleName = "Arn",
+                        LastName = "Aaronson",
+                        Address = "Rustic Village",
+                        City = "English City",
+                        State = "England",
+                        ZipCode = "12345",
+                        Email = "aaa@revature.net",
+                        PhoneNumber = "123-456-7890"
+                    }
+                 );
 
                 // save changes
                 context.SaveChanges();
