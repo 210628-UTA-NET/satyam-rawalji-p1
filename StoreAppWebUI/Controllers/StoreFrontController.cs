@@ -12,8 +12,8 @@ namespace StoreAppWebUI.Controllers
     public class StoreFrontController : Controller
     {
         // business logic variables
-        private IStoreFrontBL _storeFrontBL;
-        private I_InventoryBL _inventoryBL;
+        private readonly IStoreFrontBL _storeFrontBL;
+        private readonly I_InventoryBL _inventoryBL;
         private readonly ILogger<StoreFrontController> _logger;
 
         /// <summary>

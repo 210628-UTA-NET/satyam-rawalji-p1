@@ -8,7 +8,7 @@ namespace StoreAppDL {
     public class Repository : IRepository {
 
         // create dbcontext variable to run queries
-        private StoreAppDBContext _context;
+        private readonly StoreAppDBContext _context;
 
         // use Repository constructor to use variable passed from FactoryMenu.cs
         public Repository(StoreAppDBContext p_context) {
@@ -17,10 +17,10 @@ namespace StoreAppDL {
         }
 
         // adds customer to db
-        public Customer AddCustomer(Customer p_customer) {
-            _context.Customers.Add(p_customer);
+        public Customer AddCustomer(Customer _customer) {
+            _context.Customers.Add(_customer);
             _context.SaveChanges();
-            return p_customer;
+            return _customer;
         }
 
         // searches for customer based on first and last name

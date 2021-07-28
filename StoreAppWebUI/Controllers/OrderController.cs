@@ -12,21 +12,16 @@ namespace StoreAppWebUI.Controllers
     public class OrderController : Controller
     {
         // variables for business logic 
-        private ICustomerBL _customerBL;
-        private IStoreFrontBL _storeFrontBL;
-        private I_InventoryBL _inventoryBL;
-        private IOrderBL _orderBL;
+        private readonly IStoreFrontBL _storeFrontBL;
+        private readonly IOrderBL _orderBL;
         private readonly ILogger<OrderController> _logger;
 
         /// <summary>
         /// Using a constructor for dependency injection, create bl variable and pass through ctor
         /// </summary>
-        public OrderController(ICustomerBL p_customerBL, IStoreFrontBL p_storeFrontBL, I_InventoryBL p_inventoryBL, 
-                                IOrderBL p_orderBL, ILogger<OrderController> logger)
+        public OrderController(IStoreFrontBL p_storeFrontBL, IOrderBL p_orderBL, ILogger<OrderController> logger)
         {
-            _customerBL = p_customerBL;
             _storeFrontBL = p_storeFrontBL;
-            _inventoryBL = p_inventoryBL;
             _orderBL = p_orderBL;
             _logger = logger;
         }

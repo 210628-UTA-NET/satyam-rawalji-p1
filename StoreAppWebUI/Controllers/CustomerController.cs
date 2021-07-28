@@ -13,10 +13,10 @@ namespace StoreAppWebUI.Controllers
     public class CustomerController : Controller
     {
         // business logic variables
-        private ICustomerBL _customerBL;
-        private IStoreFrontBL _storeFrontBL;
-        private I_InventoryBL _inventoryBL;
-        private IOrderBL _orderBL;
+        private readonly ICustomerBL _customerBL;
+        private readonly IStoreFrontBL _storeFrontBL;
+        private readonly I_InventoryBL _inventoryBL;
+        private readonly IOrderBL _orderBL;
         private readonly ILogger<CustomerController> _logger;
 
         /// <summary>

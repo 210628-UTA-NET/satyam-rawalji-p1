@@ -25,36 +25,27 @@ namespace StoreAppDL
 
         public StoreAppDBContext(DbContextOptions options) : base(options) { }
 
-        // will hold the connection string?
-        // need to figure out why connection string isnt working in startup.cs
-        //protected override void OnConfiguring(DbContextOptionsBuilder p_options)
-        //{
-        //    p_options.UseSqlServer(@"Server=tcp:satyamdb.database.windows.net,1433;
-        //          Initial Catalog=satyamdb;Persist Security Info=False;User ID=srawalji;
-        //          Password=Salty3ham4;MultipleActiveResultSets=False;Encrypt=True;
-        //          TrustServerCertificate=False;Connection Timeout=30;");
-        //}
 
-        protected override void OnModelCreating(ModelBuilder p_modelBuilder)
+        protected override void OnModelCreating(ModelBuilder _modelBuilder)
         {
             // These blocks of code auto-generate ID columns
-            p_modelBuilder.Entity<Customer>()
+            _modelBuilder.Entity<Customer>()
                 .Property(cust => cust.Id)
                 .ValueGeneratedOnAdd();
 
-            p_modelBuilder.Entity<StoreFront>()
+            _modelBuilder.Entity<StoreFront>()
                 .Property(sf => sf.Id)
                 .ValueGeneratedOnAdd();
 
-            p_modelBuilder.Entity<LineItem>()
+            _modelBuilder.Entity<LineItem>()
                 .Property(li => li.Id)
                 .ValueGeneratedOnAdd();
 
-            p_modelBuilder.Entity<Order>()
+            _modelBuilder.Entity<Order>()
                 .Property(o => o.Id)
                 .ValueGeneratedOnAdd();
 
-            p_modelBuilder.Entity<Inventory>()
+            _modelBuilder.Entity<Inventory>()
                 .Property(i => i.Id)
                 .ValueGeneratedOnAdd();
         }

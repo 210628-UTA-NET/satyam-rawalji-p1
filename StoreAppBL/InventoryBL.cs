@@ -11,7 +11,7 @@ namespace StoreAppBL
     public class InventoryBL : I_InventoryBL
     {
         // declare repo variable to run functions in Repository.cs
-        private IRepository _repository;
+        private readonly IRepository _repository;
         // constructor to initialize variable pass from FactoryMenu
         public InventoryBL(IRepository p_repository)
         {

@@ -7,7 +7,7 @@ namespace StoreAppBL {
     // class implements order business logic interface
     public class OrderBL : IOrderBL {
         // use repo variable to perform functions 
-        private IRepository _repository;
+        private readonly IRepository _repository;
         // constructor to initialize function call from FactoryMenu.cs
         public OrderBL(IRepository p_repository) {
             _repository = p_repository;

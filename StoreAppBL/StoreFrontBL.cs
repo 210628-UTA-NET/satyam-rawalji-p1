@@ -7,7 +7,7 @@ namespace StoreAppBL {
     // storefrontbl inherits functions not implemented in storefrontbl interface
     public class StoreFrontBL : IStoreFrontBL {
         // declare repo variable to run functions in Repository.cs
-        private IRepository _repository;
+        private readonly IRepository _repository;
 
         // constructor to initialize variable pass from FactoryMenu
         public StoreFrontBL(IRepository p_repository) {
