@@ -11,6 +11,9 @@ namespace StoreAppTest
 {
     public class OrderModelTest
     {
+        /// <summary>
+        /// test to make sure order quantity is an integer
+        /// </summary>
         [Fact]
         public void OrderQuantityShouldBeInteger()
         {

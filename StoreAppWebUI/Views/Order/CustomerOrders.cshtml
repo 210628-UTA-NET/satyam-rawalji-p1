@@ -34,7 +34,8 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Date)
+                        @{string time = item.Date.ToString("MM/dd/yyyy HH:mm:ss");}
+                        @Html.DisplayFor(modelItem => time)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LineItem.Name)

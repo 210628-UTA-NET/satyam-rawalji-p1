@@ -8,7 +8,15 @@ namespace StoreAppWebUI.Models
 {
     public class OrderVM
     {
+        /// <summary>
+        /// Empty constructor for OrderVM
+        /// </summary>
         public OrderVM() { }
+
+        /// <summary>
+        /// Use order object to instantiate OrderVM object 
+        /// </summary>
+        /// <param name="p_order"></param>
         public OrderVM(Order p_order)
         {
             Id = p_order.Id;

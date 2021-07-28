@@ -9,7 +9,11 @@ namespace StoreAppTest
 {
     public class RepositoryTest
     {
+        /// <summary>
+        /// DBcontext used to access the db
+        /// </summary>
         private readonly DbContextOptions<StoreAppDBContext> _options;
+
         // Constructors in unit tests always run before test cases
         public RepositoryTest()
         {
@@ -20,6 +24,9 @@ namespace StoreAppTest
             this.Seed();
         }
 
+        /// <summary>
+        /// this test should get all stores in the db, use count to double check 
+        /// </summary>
         [Fact]
         public void GetAllStoresShouldGetAllStores()
         {
@@ -38,6 +45,9 @@ namespace StoreAppTest
             }
         }
 
+        /// <summary>
+        /// test to make sure search customer function is working
+        /// </summary>
         [Fact]
         public void SearchCustomerShouldSearchCustomer()
         {
@@ -69,6 +79,9 @@ namespace StoreAppTest
             }
         }
 
+        /// <summary>
+        /// test to make sure function gets all customers
+        /// </summary>
         [Fact]
         public void GetAllCustomersShouldGetAllCustomers()
         {
@@ -88,6 +101,9 @@ namespace StoreAppTest
             }
         }
 
+        /// <summary>
+        /// addcustomer function should add a customer to the db
+        /// </summary>
         [Fact]
         public void AddCustomerShouldAddCustomer()
         {

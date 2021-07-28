@@ -26,12 +26,6 @@ namespace StoreAppWebUI.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            _logger.LogInformation("If this works, I should see the alert in the console when on the Privacy Page");
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

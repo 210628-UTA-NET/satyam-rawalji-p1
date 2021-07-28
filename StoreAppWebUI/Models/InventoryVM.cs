@@ -9,11 +9,15 @@ namespace StoreAppWebUI.Models
 {
     public class InventoryVM
     {
-        public InventoryVM()
-        {
+        /// <summary>
+        /// Blank constructor for InventoryVM object
+        /// </summary>
+        public InventoryVM() { }
 
-        }
-
+        /// <summary>
+        /// use inventory object to instantiate an InventoryVM object
+        /// </summary>
+        /// <param name="p_inventory"></param>
         public InventoryVM(Inventory p_inventory)
         {
             Id = p_inventory.Id;

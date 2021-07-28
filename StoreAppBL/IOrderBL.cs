@@ -10,11 +10,6 @@ namespace StoreAppBL {
 
         List<Order> SearchStoreOrders(int storeId);
 
-
-
-
-
-
         Order PlaceOrder(int storeId, int productId, int customerId, int quantitySold);
     }
 }

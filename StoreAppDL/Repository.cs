@@ -99,7 +99,7 @@ namespace StoreAppDL {
                         CustomerId = o.CustomerId,
                         QuantitySold = o.QuantitySold,
                         Total = o.Total,
-                        Date = Convert.ToDateTime(o.Date).ToLocalTime(),
+                        Date = o.Date,
                         StoreFront = new StoreFront()
                         {
                             Id = s.Id,
@@ -181,8 +181,10 @@ namespace StoreAppDL {
         {
             var price = (from inv in _context.Inventories
                          where inv.LineItemId == productId && inv.StoreId == storeId
-                         select inv.Price);
-            double total = Convert.ToDouble(price) * quantitySold;
+                         select inv.Price).FirstOrDefault();
+            
+            // get price for order item and get total purchase price
+            double total = price * quantitySold;
 
             Order newOrder = new Order()
             {
@@ -196,6 +198,7 @@ namespace StoreAppDL {
             _context.Orders.Add(newOrder);
             _context.SaveChanges();
 
+            // after placing order, make sure to deduct order quantity from store inventory
             Inventory inven = _context.Inventories.Single(i => i.StoreId == storeId && i.LineItemId == productId);
             inven.QuantityHeld -= quantitySold;
             _context.Inventories.Update(inven);

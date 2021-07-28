@@ -183,6 +183,16 @@ namespace StoreAppWebUI.Controllers
             ); 
         }
 
+        /// <summary>
+        /// This page allows us to choose the amount of an item to order
+        /// </summary>
+        /// <param name="storeId"></param>
+        /// <param name="customerId"></param>
+        /// <param name="productId"></param>
+        /// <param name="price"></param>
+        /// <param name="quantity"></param>
+        /// <param name="name"></param>
+        /// <returns> will return you to orderplaced function </returns>
         public IActionResult OrderAmount(int storeId, int customerId, int productId, double price, int quantity, string name)
         {
             ViewBag.store = storeId;
@@ -194,6 +204,11 @@ namespace StoreAppWebUI.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Will place order into db
+        /// </summary>
+        /// <param name="ordVM"></param>
+        /// <returns> will return you to a page confirming purchase, then can go to Index </returns>
         public IActionResult OrderPlaced(OrderVM ordVM)
         {
             // use try catch for validation

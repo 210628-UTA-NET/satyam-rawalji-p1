@@ -10,6 +10,9 @@ using Xunit;
 
 namespace StoreAppTest
 {
+    /// <summary>
+    /// Tests to make sure inventory values should be above 0
+    /// </summary>
     public class InventoryModelTest
     {
         [Theory]

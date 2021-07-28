@@ -9,15 +9,18 @@ using Xunit;
 
 namespace StoreAppTest
 {
+    /// <summary>
+    /// Multiple tests to make sure customer form takes correct input types for first and last names
+    /// </summary>
     public class CustomerModelTest
     {
         [Theory]
         [InlineData("Rick c-137")]
-        [InlineData("Pill$berry_DopeBoi")]
+        [InlineData("Pill$berry_DoeBoi")]
         [InlineData("A_aron")]
         [InlineData("l33tcoder")]
-        [InlineData("80085")]
-        [InlineData("PEN15")]
+        [InlineData("Shoney's")]
+        [InlineData("!xobile")]
         public void FirstNameShouldGetValidData(string input)
         {
             //Arrange
@@ -31,8 +34,8 @@ namespace StoreAppTest
         [InlineData("$antana")]
         [InlineData("Rodgers-Cromartie")]
         [InlineData("@nderson")]
-        [InlineData("69")]
-        [InlineData("xXx__694202496_xXx")]
+        [InlineData("Tekashi69")]
+        [InlineData("xXx___xXx")]
         public void LastNameShouldGetValidData(string input)
         {
             //Arrange

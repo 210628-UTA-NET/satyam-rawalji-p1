@@ -8,7 +8,6 @@ namespace StoreAppBL
     public interface IStoreFrontBL {
 
         // functions to be inherited by storefront bl
-        
         List<StoreFront> GetAllStores();
     }
 }

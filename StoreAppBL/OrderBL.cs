@@ -25,11 +25,6 @@ namespace StoreAppBL {
             return _repository.SearchStoreOrders(storeId);
         }
 
-
-
-
-
-
         public Order PlaceOrder(int storeId, int productId, int customerId, int quantitySold)
         {
             return _repository.PlaceOrder(storeId, productId, customerId, quantitySold);
