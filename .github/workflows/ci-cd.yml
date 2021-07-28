@@ -23,7 +23,7 @@ jobs:
       run: dotnet build StoreApp/ --configuration Release --no-restore
     - name: Test
       run: dotnet test StoreApp/ --no-restore --verbosity normal
-    - name: sonarscan-dotnet
+    - name: Code Analysis
       # You may pin to the exact commit or the version.
       # uses: highbyte/sonarscan-dotnet@90025f8a91fb480278dbd6cf740ee9d862f7794c
       uses: highbyte/sonarscan-dotnet@v2.1.1-beta
@@ -36,7 +36,7 @@ jobs:
         sonarOrganization: 210628-uta-net
         dotnetBuildArguments: StoreApp/
         # Optional command arguments to 'dotnet test'
-        dotnetTestArguments: StoreApp/ CoreC#/RestaurantReview/ --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+        dotnetTestArguments: StoreApp/ --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
         # Optional extra command arguments the the SonarScanner 'begin' command
         sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
       env:
